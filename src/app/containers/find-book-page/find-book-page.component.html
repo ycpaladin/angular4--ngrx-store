@@ -1,3 +1,2 @@
-<p>
-  find-book-page works!
-</p>
+<app-book-search [query]="searchQuery$ | async" [searching]="loading$ | async" (search)="search($event)"></app-book-search>
+<app-book-preview-list [books]="books$ | async"></app-book-preview-list>

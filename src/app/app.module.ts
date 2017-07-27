@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { routes } from './routes';
@@ -14,10 +17,13 @@ import { SelectedBookPageComponent } from './containers/selected-book-page/selec
 import { CollectionPageComponent } from './containers/collection-page/collection-page.component';
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
 
+import { BookExistsGuard } from './guards/book-exists';
+import { GoogleBooksService } from './services/google-books.service';
 
 import { PipeModule } from './pipes/pipe.module';
 import { ComponentsModule } from './components/components.module';
 
+import { BookEffects } from './effects/book.effect';
 
 import { reducer } from './reducers';
 
@@ -36,14 +42,17 @@ import { reducer } from './reducers';
     imports: [
         BrowserModule,
         MaterialModule,
+        HttpModule,
         PipeModule,
         ComponentsModule,
+        BrowserAnimationsModule,
         RouterModule.forRoot(routes, { useHash: true }),
         StoreModule.forRoot(reducer),
-        StoreRouterConnectingModule
+        StoreRouterConnectingModule,
+        EffectsModule.forRoot([BookEffects]),
         // StoreModule.forRoot(rootReducer)
     ],
-    providers: [],
+    providers: [BookExistsGuard, GoogleBooksService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

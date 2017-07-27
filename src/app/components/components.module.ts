@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 import { PipeModule } from '../pipes/pipe.module';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -12,6 +13,9 @@ import { BookPreviewComponent } from './book-preview/book-preview.component';
 import { BookPreviewListComponent } from './book-preview-list/book-preview-list.component';
 import { BookPreviewSearchComponent } from './book-preview-search/book-preview-search.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { BookSearchComponent } from './book-search/book-search.component';
+
+import { BookEffects } from '../effects/book.effect';
 
 export const COMPONENTS = [
     SidenavComponent,
@@ -21,7 +25,8 @@ export const COMPONENTS = [
     BookPreviewComponent,
     BookPreviewListComponent,
     BookPreviewSearchComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    BookSearchComponent
 ];
 
 @NgModule({
@@ -29,7 +34,8 @@ export const COMPONENTS = [
         CommonModule,
         MaterialModule,
         RouterModule,
-        PipeModule
+        PipeModule,
+        // EffectsModule.forFeature([BookEffects])
     ],
     declarations: COMPONENTS,
     exports: COMPONENTS

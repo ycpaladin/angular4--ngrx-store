@@ -2,14 +2,14 @@ import { Action } from '@ngrx/store';
 import { Book } from '../models/book';
 
 
-export const SEARCG = '[Book] Search';
+export const SEARCH = '[Book] Search';
 export const SEARCH_COMPLETE = '[Book] Search Complete';
 export const LOAD = '[Book] Load';
 export const SELECT = '[Book] Select';
 
 
 export class SearchAction implements Action {
-    readonly type = SEARCG;
+    readonly type = SEARCH;
     constructor(public payload: string) { }
 }
 
