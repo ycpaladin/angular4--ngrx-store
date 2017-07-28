@@ -9,9 +9,9 @@
 
 
 #运行
-
+```bash
 npm install 
 
 npm run start
-
+```
 访问 http://localhost:4201
