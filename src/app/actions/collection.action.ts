@@ -12,6 +12,10 @@ export const LOAD = '[Collection] Load';
 export const LOAD_SUCCESS = '[Collection] Load Success';
 export const LOAD_FAIL = '[Collection] Load Fail';
 
+export const REMOVE_ALL_BOOKS = '[Collection] Remove all books';
+export const REMOVE_ALL_BOOKS_SUCESS = '[Collection] Remove all books Sucess';
+export const REMOVE_ALL_BOOKS_FAIL = '[Collection] Remove all books Fail';
+
 
 /**
  * Add Book to Collection Actions
@@ -76,6 +80,22 @@ export class LoadFailAction implements Action {
 }
 
 
+export class RemoveAllBooksAction implements Action {
+    readonly type = REMOVE_ALL_BOOKS;
+
+}
+
+export class RemoveAllBooksSucessAction implements Action {
+    readonly type = REMOVE_ALL_BOOKS_SUCESS;
+    public readonly payload: boolean = true;
+}
+
+export class RemoveAllBooksFailAction implements Action {
+    readonly type = REMOVE_ALL_BOOKS_FAIL;
+    public readonly payload: boolean = false;
+}
+
+
 export type Actions
     = AddBookAction
     | AddBookSuccessAction
@@ -85,4 +105,7 @@ export type Actions
     | RemoveBookFailAction
     | LoadAction
     | LoadSuccessAction
-    | LoadFailAction;
+    | LoadFailAction
+    | RemoveAllBooksAction
+    | RemoveAllBooksSucessAction
+    | RemoveAllBooksFailAction;

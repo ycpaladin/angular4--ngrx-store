@@ -47,6 +47,18 @@ export function reducer(state = initialState, action: collection.Actions): State
             });
         }
 
+        case collection.REMOVE_ALL_BOOKS_SUCESS:
+        case collection.REMOVE_ALL_BOOKS_FAIL: {
+
+            if (action.payload === false) {
+                return state;
+            } else {
+                return Object.assign({}, state, {
+                    ids: []
+                });
+            }
+        }
+
         case collection.REMOVE_BOOK_SUCCESS:
         case collection.ADD_BOOK_FAIL: {
             const book = action.payload;

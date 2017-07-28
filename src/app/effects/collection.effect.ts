@@ -58,6 +58,23 @@ export class CollectionEffects {
                 .catch(() => of(new collection.RemoveBookFailAction(book)))
         );
 
+    @Effect()
+    removeAllBookFromCollection$: Observable<Action> = this.actions$
+        .ofType(collection.REMOVE_ALL_BOOKS)
+        .mergeMap(() =>
+            this.db.query('books').toArray()
+                .map((books: Book[]) => books.map(book => book.id))
+                // .mergeMap((books: Book[]) => books.map(book => book.id))
+                .mergeMap((bookIds: string[]) =>
+                    this.db.executeWrite('books', 'delete', bookIds)
+                        .map(() => new collection.RemoveAllBooksSucessAction())
+                        .catch(error => of(new collection.RemoveAllBooksFailAction()))
+                ).catch((error) => {
+                    console.log(error);
+                    return of(new collection.RemoveAllBooksFailAction());
+                })
+        );
+
 
     constructor(private actions$: Actions, private db: Database) {
 

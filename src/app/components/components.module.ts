@@ -14,6 +14,7 @@ import { BookPreviewListComponent } from './book-preview-list/book-preview-list.
 import { BookPreviewSearchComponent } from './book-preview-search/book-preview-search.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BookSearchComponent } from './book-search/book-search.component';
+import { RemoveAllBookComponent } from './remove-all-book/remove-all-book.component';
 
 import { BookEffects } from '../effects/book.effect';
 
@@ -26,7 +27,8 @@ export const COMPONENTS = [
     BookPreviewListComponent,
     BookPreviewSearchComponent,
     ToolbarComponent,
-    BookSearchComponent
+    BookSearchComponent,
+    RemoveAllBookComponent
 ];
 
 @NgModule({
