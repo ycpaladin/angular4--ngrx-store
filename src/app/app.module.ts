@@ -7,9 +7,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { DBModule } from '@ngrx/db';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { routes } from './routes';
+import { routes } from './app.routes';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ViewBookPageComponent } from './containers/view-book-page/view-book-page.component';
 import { FindBookPageComponent } from './containers/find-book-page/find-book-page.component';
@@ -24,8 +25,10 @@ import { PipeModule } from './pipes/pipe.module';
 import { ComponentsModule } from './components/components.module';
 
 import { BookEffects } from './effects/book.effect';
+import { CollectionEffects } from './effects/collection.effect';
 
 import { reducer } from './reducers';
+import { schema } from './db.schema';
 
 @NgModule({
     declarations: [
@@ -49,7 +52,8 @@ import { reducer } from './reducers';
         RouterModule.forRoot(routes, { useHash: true }),
         StoreModule.forRoot(reducer),
         StoreRouterConnectingModule,
-        EffectsModule.forRoot([BookEffects]),
+        EffectsModule.forRoot([BookEffects, CollectionEffects]),
+        DBModule.provideDB(schema)
         // StoreModule.forRoot(rootReducer)
     ],
     providers: [BookExistsGuard, GoogleBooksService],

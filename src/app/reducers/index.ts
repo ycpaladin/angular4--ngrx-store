@@ -24,7 +24,9 @@ export const reducer: ActionReducerMap<State> = {
 export const getBooksState = (state: State) => state.books;
 
 export const getBookEntities = createSelector(getBooksState, fromBook.getEntities);
-
+export const getBookIds = createSelector(getBooksState, fromBook.getIds);
+export const getSelectedBookId = createSelector(getBooksState, fromBook.getSelectedId);
+export const getSelectedBook = createSelector(getBooksState, fromBook.getSelected);
 
 
 export const getSearchState = (state: State) => state.search;
@@ -36,7 +38,7 @@ export const getSearchLoading = createSelector(getSearchState, fromSearch.getLoa
 
 
 export const getSearchResults = createSelector(getBookEntities, getSearchBookIds, (books, searchIds) => {
-  return searchIds.map(id => books[id]);
+    return searchIds.map(id => books[id]);
 });
 
 
@@ -51,6 +53,9 @@ export const getBookCollection = createSelector(getBookEntities, getCollectionBo
     return ids.map(id => entities[id]);
 });
 
+export const isSelectedBookInCollection = createSelector(getCollectionBookIds, getSelectedBookId, (ids, selected) => {
+  return ids.indexOf(selected) > -1;
+});
 
 
 

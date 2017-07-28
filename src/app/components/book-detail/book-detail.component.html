@@ -1,3 +1,22 @@
-<p>
-  book-detail works!
-</p>
+<md-card *ngIf="book">
+  <md-card-title-group>
+    <md-card-title>{{ title }}</md-card-title>
+    <md-card-subtitle *ngIf="subtitle">{{ subtitle }}</md-card-subtitle>
+    <img md-card-sm-image *ngIf="thumbnail" [src]="thumbnail" />
+  </md-card-title-group>
+  <md-card-content>
+    <p [innerHtml]="description"></p>
+  </md-card-content>
+  <md-card-footer class="footer">
+    <app-book-authors [book]="book"></app-book-authors>
+  </md-card-footer>
+  <md-card-actions align="start">
+    <button md-raised-button color="warn" *ngIf="inCollection" (click)="remove.emit(book)">
+      Remove Book from Collection
+    </button>
+
+    <button md-raised-button color="primary" *ngIf="!inCollection" (click)="add.emit(book)">
+      Add Book to Collection
+    </button>
+  </md-card-actions>
+</md-card>

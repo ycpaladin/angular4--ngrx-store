@@ -1,12 +1,12 @@
 
-import '@ngrx/core/add/operator/select';
+// import '@ngrx/core/add/operator/select';
 import 'rxjs/add/operator/map';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import * as fromRoot from '../../reducers';
 import * as book from '../../actions/book.action';
 
@@ -23,8 +23,8 @@ export class ViewBookPageComponent implements OnDestroy {
     // dd: Observable<any>;
     constructor(store: Store<fromRoot.State>, route: ActivatedRoute) {
         this.actionsSubscription = route.params
-            .select<string>('id')
-            .map(id => new book.SelectAction(id))
+            // .select<string>('id')
+            .map(p => new book.SelectAction(p['id']))
             .subscribe(store);
         // console.log(route);
     }

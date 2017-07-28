@@ -25,7 +25,7 @@
     "@angular/platform-browser-dynamic": "^4.3.1",
     "@angular/platform-server": "^4.3.1",
     "@angular/router": "^4.3.1",
-    "@ngrx/core": "^1.2.0",
+    "@ngrx/db": "^2.0.2",
     "@ngrx/effects": "^4.0.1",
     "@ngrx/router-store": "^4.0.0",
     "@ngrx/store": "^4.0.0",

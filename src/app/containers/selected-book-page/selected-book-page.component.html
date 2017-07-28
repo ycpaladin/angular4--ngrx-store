@@ -1,3 +1,3 @@
-<p>
-  selected-book-page works!
-</p>
+<app-book-detail [book]="book$ | async" [inCollection]="isSelectedBookInCollection$ | async" (add)="addToCollection($event)"
+  (remove)="removeFromCollection($event)">
+</app-book-detail>
