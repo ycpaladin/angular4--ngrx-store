@@ -4,6 +4,8 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
+// import 'rxjs/add/operatpr/select';
+// import 'rxjs/add/operator/expand';
 import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
@@ -62,7 +64,9 @@ export class CollectionEffects {
     removeAllBookFromCollection$: Observable<Action> = this.actions$
         .ofType(collection.REMOVE_ALL_BOOKS)
         .mergeMap(() =>
-            this.db.query('books').toArray()
+            this.db.query('books').toArray<Book>()
+                // .expand((book: Book) => book.id)
+                
                 .map((books: Book[]) => books.map(book => book.id))
                 // .mergeMap((books: Book[]) => books.map(book => book.id))
                 .mergeMap((bookIds: string[]) =>
