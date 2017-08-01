@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/from';
 
 import { Component, OnInit } from '@angular/core';
