@@ -1,10 +1,10 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RxjsTestPageComponent } from './rxjs-test-page.component';
+import { RxjsTrainingPageComponent } from './rxjs-training-page.component';
 
 const routes: Routes = [
-  { path: '', component: RxjsTestPageComponent }
+  { path: '', component: RxjsTrainingPageComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

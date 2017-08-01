@@ -11,11 +11,11 @@ interface User {
 }
 
 @Component({
-    selector: 'app-rxjs-map-test',
-    templateUrl: './rxjs-map-test.component.html',
-    styleUrls: ['./rxjs-map-test.component.css']
+    selector: 'app-rxjs-map-training',
+    templateUrl: './rxjs-map-training.component.html',
+    styleUrls: ['./rxjs-map-training.component.css']
 })
-export class RxjsMapTestComponent implements OnInit {
+export class RxjsMapTrainingComponent implements OnInit {
 
     data$: Observable<string[]>;
     constructor() { }

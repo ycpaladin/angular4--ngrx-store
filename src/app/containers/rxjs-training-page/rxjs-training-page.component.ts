@@ -10,11 +10,11 @@ interface User {
 
 
 @Component({
-    selector: 'app-rxjs-test-page',
-    templateUrl: './rxjs-test-page.component.html',
-    styleUrls: ['./rxjs-test-page.component.css']
+    selector: 'app-rxjs-training-page',
+    templateUrl: './rxjs-training-page.component.html',
+    styleUrls: ['./rxjs-training-page.component.css']
 })
-export class RxjsTestPageComponent implements OnInit {
+export class RxjsTrainingPageComponent implements OnInit {
 
 
     constructor() { }

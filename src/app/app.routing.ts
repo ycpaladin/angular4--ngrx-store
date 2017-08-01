@@ -22,8 +22,8 @@ export const routes: Routes = [
         component: ViewBookPageComponent
     },
     {
-        path: 'rxjs',
-        loadChildren: './containers/rxjs-test-page/rxjs-test-page.module#RxjsTestPageModule'
+        path: 'training',
+        loadChildren: './containers/rxjs-training-page/rxjs-training-page.module#RxjsTrainingPageModule'
     },
     {
         path: '**',
