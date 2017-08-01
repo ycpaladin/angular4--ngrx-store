@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RxjsMapTestComponent } from './rxjs-map-test.component';
+import { RxjsTrainingCreateComponent } from './rxjs-training-create.component';
 
-describe('RxjsMapTestComponent', () => {
-  let component: RxjsMapTestComponent;
-  let fixture: ComponentFixture<RxjsMapTestComponent>;
+describe('RxjsTrainingCreateComponent', () => {
+  let component: RxjsTrainingCreateComponent;
+  let fixture: ComponentFixture<RxjsTrainingCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RxjsMapTestComponent ]
+      declarations: [ RxjsTrainingCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RxjsMapTestComponent);
+    fixture = TestBed.createComponent(RxjsTrainingCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

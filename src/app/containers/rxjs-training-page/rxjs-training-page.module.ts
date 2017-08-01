@@ -4,9 +4,11 @@ import { MaterialModule } from '@angular/material';
 
 import { RxjsTrainingPageComponent } from './rxjs-training-page.component';
 
-import { RxjsMapTrainingComponent } from './components/rxjs-map-training/rxjs-map-training.component';
+import { RxjsTrainingMapComponent } from './components/rxjs-training-map/rxjs-training-map.component';
 
 import { routing } from './rxjs-training.routing';
+import { RxjsTrainingSectionComponent } from './components/rxjs-training-section/rxjs-training-section.component';
+import { RxjsTrainingCreateComponent } from './components/rxjs-training-create/rxjs-training-create.component';
 
 @NgModule({
     imports: [
@@ -16,7 +18,9 @@ import { routing } from './rxjs-training.routing';
     ],
     declarations: [
         RxjsTrainingPageComponent,
-        RxjsMapTrainingComponent
+        RxjsTrainingMapComponent,
+        RxjsTrainingSectionComponent,
+        RxjsTrainingCreateComponent
     ]
 })
 export class RxjsTrainingPageModule { }
