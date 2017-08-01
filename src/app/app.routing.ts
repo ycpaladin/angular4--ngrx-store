@@ -6,7 +6,6 @@ import { FindBookPageComponent } from './containers/find-book-page/find-book-pag
 import { CollectionPageComponent } from './containers/collection-page/collection-page.component';
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
 import { BookExistsGuard } from './guards/book-exists';
-import { RxjsTestPageComponent } from './containers/rxjs-test-page/rxjs-test-page.component';
 
 export const routes: Routes = [
     {
@@ -24,7 +23,7 @@ export const routes: Routes = [
     },
     {
         path: 'rxjs',
-        component: RxjsTestPageComponent
+        loadChildren: './containers/rxjs-test-page/rxjs-test-page.module#RxjsTestPageModule'
     },
     {
         path: '**',

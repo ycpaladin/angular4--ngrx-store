@@ -17,7 +17,6 @@ import { FindBookPageComponent } from './containers/find-book-page/find-book-pag
 import { SelectedBookPageComponent } from './containers/selected-book-page/selected-book-page.component';
 import { CollectionPageComponent } from './containers/collection-page/collection-page.component';
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
-import { RxjsTestPageComponent } from './containers/rxjs-test-page/rxjs-test-page.component';
 
 import { BookExistsGuard } from './guards/book-exists';
 import { GoogleBooksService } from './services/google-books.service';
@@ -41,7 +40,6 @@ import { schema } from './db.schema';
         SelectedBookPageComponent,
         CollectionPageComponent,
         NotFoundPageComponent,
-        RxjsTestPageComponent,
     ],
     imports: [
         BrowserModule,
@@ -55,7 +53,6 @@ import { schema } from './db.schema';
         StoreRouterConnectingModule,
         EffectsModule.forRoot([BookEffects, CollectionEffects]),
         DBModule.provideDB(schema)
-        // StoreModule.forRoot(rootReducer)
     ],
     providers: [BookExistsGuard, GoogleBooksService],
     bootstrap: [AppComponent]
