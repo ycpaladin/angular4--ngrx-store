@@ -9,6 +9,7 @@ import { RxjsTrainingMapComponent } from './components/rxjs-training-map/rxjs-tr
 import { routing } from './rxjs-training.routing';
 import { RxjsTrainingSectionComponent } from './components/rxjs-training-section/rxjs-training-section.component';
 import { RxjsTrainingCreateComponent } from './components/rxjs-training-create/rxjs-training-create.component';
+import { RxjsTrainingNeverComponent } from './components/rxjs-training-never/rxjs-training-never.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { RxjsTrainingCreateComponent } from './components/rxjs-training-create/r
         RxjsTrainingPageComponent,
         RxjsTrainingMapComponent,
         RxjsTrainingSectionComponent,
-        RxjsTrainingCreateComponent
+        RxjsTrainingCreateComponent,
+        RxjsTrainingNeverComponent
     ]
 })
 export class RxjsTrainingPageModule { }
