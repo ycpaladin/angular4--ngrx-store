@@ -64,11 +64,7 @@ export class CollectionEffects {
     removeAllBookFromCollection$: Observable<Action> = this.actions$
         .ofType(collection.REMOVE_ALL_BOOKS)
         .mergeMap(() =>
-            this.db.query('books').toArray<Book>()
-                // .expand((book: Book) => book.id)
-                
-                .map((books: Book[]) => books.map(book => book.id))
-                // .mergeMap((books: Book[]) => books.map(book => book.id))
+            this.db.query('books').map((book: Book) => book.id).toArray<string>()
                 .mergeMap((bookIds: string[]) =>
                     this.db.executeWrite('books', 'delete', bookIds)
                         .map(() => new collection.RemoveAllBooksSucessAction())

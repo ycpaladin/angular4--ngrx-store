@@ -10,13 +10,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { routes } from './app.routes';
+import { routes } from './app.routing';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ViewBookPageComponent } from './containers/view-book-page/view-book-page.component';
 import { FindBookPageComponent } from './containers/find-book-page/find-book-page.component';
 import { SelectedBookPageComponent } from './containers/selected-book-page/selected-book-page.component';
 import { CollectionPageComponent } from './containers/collection-page/collection-page.component';
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
+import { RxjsTestPageComponent } from './containers/rxjs-test-page/rxjs-test-page.component';
 
 import { BookExistsGuard } from './guards/book-exists';
 import { GoogleBooksService } from './services/google-books.service';
@@ -30,6 +31,7 @@ import { CollectionEffects } from './effects/collection.effect';
 import { reducer } from './reducers';
 import { schema } from './db.schema';
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -39,8 +41,7 @@ import { schema } from './db.schema';
         SelectedBookPageComponent,
         CollectionPageComponent,
         NotFoundPageComponent,
-
-
+        RxjsTestPageComponent,
     ],
     imports: [
         BrowserModule,
