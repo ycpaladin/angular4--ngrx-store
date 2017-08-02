@@ -3,7 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { of } from 'rxjs/observable/of';
 import { concat } from 'rxjs/observable/concat';
-// import { marge } from ''
+import 'rxjs/add/operator/reduce';
+import 'rxjs/add/operator/merge';
+
 @Component({
     selector: 'app-rxjs-training-from-event',
     templateUrl: './rxjs-training-fromEvent.component.html',
@@ -50,7 +52,13 @@ export class RxjsTrainingFromEventComponent implements OnInit {
             target.style.left = d.left + 'px';
         });
 
-        this.data$ = of(...[]);
+        this.data$ = of(['1', '2']);
+
+        // const data1$ = of(...['1', '2', '3', '4', ' 5', '6']);
+        // const data2$ = Observable.from(['12', '21', '23', '33']);
+
+        // this.data$ = data1$.concat(data2$).toArray();
+
         // Observable.from([].)
         const enter$ = fromEvent<KeyboardEvent>(this.txt.nativeElement, 'keydown').filter(e => e.keyCode === 13);
 
@@ -58,9 +66,16 @@ export class RxjsTrainingFromEventComponent implements OnInit {
             .filter(v => v !== '')
             .do((e: string) => {
                 // this.data$ = concat<string[]>(this.data$, of(e)).map((array: string[]) => array);
-                // this.txt.nativeElement.value = '';
                 // console.log(this.data$.toArray());
-                this.data$ = this.data$.mergeMap(e);
+                // this.data$ = this.data$.mergeMap(e);
+               const x$ =  this.data$.map((array) => [e, ...array]).do(v => {
+                    console.log(v);
+                    this.data$ = of(v);
+                });
+
+                x$.subscribe();
+                // this.data$.reduce()
+                // this.txt.nativeElement.value = '';
             })
             .subscribe(v => {
                 console.log('output the value from subscribe => ', v);
