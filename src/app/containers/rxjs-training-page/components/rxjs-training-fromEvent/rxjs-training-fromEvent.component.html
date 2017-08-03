@@ -6,7 +6,11 @@
 
 
 <ul>
-    <li *ngFor="let s of data$ | async">
+    <li *ngFor="let s of data$ | async" (click)="liCLick(s)">
         {{s}}
     </li>
 </ul>
+<div>
+    <app-rxjs-training-child-1 [value]="current"></app-rxjs-training-child-1>
+    <app-rxjs-training-child-2 [value]="current"></app-rxjs-training-child-2>
+</div>

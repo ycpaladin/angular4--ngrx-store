@@ -1,17 +1,27 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+    Component, OnInit, ViewChild, ElementRef,
+    ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { of } from 'rxjs/observable/of';
 import { concat } from 'rxjs/observable/concat';
+// import 'rxjs/observable/unsubscribe';
+
 import 'rxjs/add/operator/reduce';
 import 'rxjs/add/operator/merge';
+
+
 
 @Component({
     selector: 'app-rxjs-training-from-event',
     templateUrl: './rxjs-training-fromEvent.component.html',
-    styleUrls: ['./rxjs-training-fromEvent.component.css']
+    styleUrls: ['./rxjs-training-fromEvent.component.css'],
 })
-export class RxjsTrainingFromEventComponent implements OnInit {
+export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoCheck {
+
+    // root OnChange => root DoCheck => current 
+
 
     @ViewChild('mm')
     mm: ElementRef;
@@ -19,8 +29,10 @@ export class RxjsTrainingFromEventComponent implements OnInit {
     @ViewChild('txt')
     txt: ElementRef;
 
+    current: string;
+
     data$: Observable<string[]>;
-    constructor() { }
+    constructor(private changeRef: ChangeDetectorRef) { }
 
     ngOnInit() {
 
@@ -52,34 +64,40 @@ export class RxjsTrainingFromEventComponent implements OnInit {
             target.style.left = d.left + 'px';
         });
 
-        this.data$ = of(['1', '2']);
+        const data1$ = of(...['1', '2', '3', '4', ' 5', '6']);
+        const data2$ = Observable.from(['12', '21', '23', '33']);
 
-        // const data1$ = of(...['1', '2', '3', '4', ' 5', '6']);
-        // const data2$ = Observable.from(['12', '21', '23', '33']);
-
-        // this.data$ = data1$.concat(data2$).toArray();
+        this.data$ = data1$.concat(data2$).toArray();
 
         // Observable.from([].)
         const enter$ = fromEvent<KeyboardEvent>(this.txt.nativeElement, 'keydown').filter(e => e.keyCode === 13);
 
-        enter$.map(t => this.txt.nativeElement.value)
+        // 异步方法
+        const subscribe$ = enter$.map(t => this.txt.nativeElement.value)
             .filter(v => v !== '')
-            .do((e: string) => {
-                // this.data$ = concat<string[]>(this.data$, of(e)).map((array: string[]) => array);
-                // console.log(this.data$.toArray());
-                // this.data$ = this.data$.mergeMap(e);
-               const x$ =  this.data$.map((array) => [e, ...array]).do(v => {
-                    console.log(v);
-                    this.data$ = of(v);
-                });
-
-                x$.subscribe();
-                // this.data$.reduce()
-                // this.txt.nativeElement.value = '';
-            })
-            .subscribe(v => {
+            .subscribe((v: string) => {
                 console.log('output the value from subscribe => ', v);
+                this.current = v;
+                // 异步方法中给data$属性设置值，需要手动去更新
+                this.data$ = this.data$.map((array) => [v, ...array]);
+                this.txt.nativeElement.value = '';
+                this.changeRef.markForCheck(); // 手动更新
             });
+    }
+
+    liCLick(s: string) {
+        // 同步方法中，给data$属性设置值，页面能自动update
+        console.log('===============================================');
+        this.current = s;
+        this.data$ = this.data$.map((array) => [s, ...array]);
+    }
+
+    ngDoCheck(): void {
+        console.log('ngDocheck... from this page..');
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('ngOnChanges... from this page..');
     }
 
 }
