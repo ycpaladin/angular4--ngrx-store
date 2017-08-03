@@ -1,8 +1,10 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
-    ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges
+    ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges,
+    OnDestroy
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { of } from 'rxjs/observable/of';
 import { concat } from 'rxjs/observable/concat';
@@ -18,9 +20,8 @@ import 'rxjs/add/operator/merge';
     templateUrl: './rxjs-training-fromEvent.component.html',
     styleUrls: ['./rxjs-training-fromEvent.component.css'],
 })
-export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoCheck {
+export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoCheck, OnDestroy {
 
-    // root OnChange => root DoCheck => current 
 
 
     @ViewChild('mm')
@@ -28,6 +29,8 @@ export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoChec
 
     @ViewChild('txt')
     txt: ElementRef;
+
+    clickSubscription: Subscription;
 
     current: string;
 
@@ -70,10 +73,9 @@ export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoChec
         this.data$ = data1$.concat(data2$).toArray();
 
         // Observable.from([].)
-        const enter$ = fromEvent<KeyboardEvent>(this.txt.nativeElement, 'keydown').filter(e => e.keyCode === 13);
-
-        // 异步方法
-        const subscribe$ = enter$.map(t => this.txt.nativeElement.value)
+        this.clickSubscription = fromEvent<KeyboardEvent>(this.txt.nativeElement, 'keydown')
+            .filter(e => e.keyCode === 13)
+            .map(t => this.txt.nativeElement.value)
             .filter(v => v !== '')
             .subscribe((v: string) => {
                 console.log('output the value from subscribe => ', v);
@@ -98,6 +100,10 @@ export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoChec
 
     ngOnChanges(changes: SimpleChanges): void {
         console.log('ngOnChanges... from this page..');
+    }
+
+    ngOnDestroy(): void {
+        this.clickSubscription.unsubscribe();
     }
 
 }
