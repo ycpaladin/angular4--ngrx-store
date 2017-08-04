@@ -1,0 +1,7 @@
+<ul  *ngIf="data$">
+  <li *ngFor="let movie of data$">
+      <md-card>
+        {{movie.title}}
+      </md-card>
+  </li>
+</ul>

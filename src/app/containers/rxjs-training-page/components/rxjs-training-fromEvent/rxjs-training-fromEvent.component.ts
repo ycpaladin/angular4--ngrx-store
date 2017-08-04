@@ -30,7 +30,7 @@ export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoChec
     @ViewChild('txt')
     txt: ElementRef;
 
-    clickSubscription: Subscription;
+    keydownSubscription: Subscription;
 
     current: string;
 
@@ -73,11 +73,11 @@ export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoChec
         this.data$ = data1$.concat(data2$).toArray();
 
         // Observable.from([].)
-        this.clickSubscription = fromEvent<KeyboardEvent>(this.txt.nativeElement, 'keydown')
+        this.keydownSubscription = fromEvent<KeyboardEvent>(this.txt.nativeElement, 'keydown')
             .filter(e => e.keyCode === 13)
-            .map(t => this.txt.nativeElement.value)
+            .map(t => <string>this.txt.nativeElement.value)
             .filter(v => v !== '')
-            .subscribe((v: string) => {
+            .subscribe((v) => {
                 console.log('output the value from subscribe => ', v);
                 this.current = v;
                 // 异步方法中给data$属性设置值，需要手动去更新
@@ -103,7 +103,7 @@ export class RxjsTrainingFromEventComponent implements OnInit, OnChanges, DoChec
     }
 
     ngOnDestroy(): void {
-        this.clickSubscription.unsubscribe();
+        this.keydownSubscription.unsubscribe();
     }
 
 }
