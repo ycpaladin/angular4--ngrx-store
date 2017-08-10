@@ -16,6 +16,8 @@ export class RxjsTrainingChild1Component implements OnInit, OnChanges, DoCheck {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        // console.log('================================>', changes['value']);
+        changes['value'].firstChange = true;
         console.log('ngOnChanges from RxjsTrainingChild1Component...');
     }
 
