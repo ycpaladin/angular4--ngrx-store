@@ -16,7 +16,11 @@ export class ProfileCardComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('profile was changeed ...');
+        console.log('profile has changed ...');
+    }
+
+    Update() {
+        this.profile.name = 'kkkkkkk';
     }
 
 }

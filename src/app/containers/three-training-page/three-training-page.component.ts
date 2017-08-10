@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import THREE from 'three.js';
+import * as THREE from 'three';
 
 @Component({
     selector: 'app-three-training-page',

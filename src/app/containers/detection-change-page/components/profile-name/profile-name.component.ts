@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-profile-name',
     templateUrl: './profile-name.component.html',
-    styleUrls: ['./profile-name.component.css']
+    styleUrls: ['./profile-name.component.css'],
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileNameComponent implements OnInit {
+export class ProfileNameComponent implements OnInit, OnChanges {
+
 
     @Input() name: string;
     constructor() { }
@@ -13,4 +15,7 @@ export class ProfileNameComponent implements OnInit {
     ngOnInit() {
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('profile-name has changed.');
+    }
 }
