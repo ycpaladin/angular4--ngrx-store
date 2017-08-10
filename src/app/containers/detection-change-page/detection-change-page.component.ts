@@ -20,6 +20,11 @@ export class DetectionChangePageComponent implements OnInit, OnChanges {
     message = '-----@@@@_@@@@-----';
 
     ngOnInit() {
+
+        setTimeout(() => {
+            this.profile.name = 'lxy';
+            console.log(this.profile.name);
+        }, 2000);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -28,6 +33,10 @@ export class DetectionChangePageComponent implements OnInit, OnChanges {
 
     Change() {
         this.profile.name = 'kevin';
+        // this.profile = {
+        //     name: 'kevin',
+        //     age: 30
+        // };
     }
 
     Change2() {
