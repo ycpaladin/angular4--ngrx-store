@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'app-detection-change-page',
@@ -8,7 +8,7 @@ import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 export class DetectionChangePageComponent implements OnInit, OnChanges {
 
 
-    constructor() { }
+    constructor(private cdr: ChangeDetectorRef) { }
 
 
 
@@ -24,6 +24,7 @@ export class DetectionChangePageComponent implements OnInit, OnChanges {
         setTimeout(() => {
             this.profile.name = 'lxy';
             console.log(this.profile.name);
+            this.cdr.markForCheck();
         }, 2000);
     }
 
@@ -33,6 +34,7 @@ export class DetectionChangePageComponent implements OnInit, OnChanges {
 
     Change() {
         this.profile.name = 'kevin';
+        // this.cdr.markForCheck();
         // this.profile = {
         //     name: 'kevin',
         //     age: 30

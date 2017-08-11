@@ -4,7 +4,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStra
     selector: 'app-profile-card',
     templateUrl: './profile-card.component.html',
     styleUrls: ['./profile-card.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileCardComponent implements OnInit, OnChanges {
 
