@@ -1,10 +1,10 @@
-import { Demo06Page } from './app.po';
+import { AppPage } from './app.po';
 
-describe('demo06 App', () => {
-  let page: Demo06Page;
+describe('workspace-project App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new Demo06Page();
+    page = new AppPage();
   });
 
   it('should display welcome message', () => {

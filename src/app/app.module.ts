@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-// import { MaterialModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -29,9 +28,14 @@ import { CollectionEffects } from './effects/collection.effect';
 
 import { reducer } from './reducers';
 import { schema } from './db.schema';
+import { HttpClientModule } from '@angular/common/http';
 
-import { HttpClientModule } from '@angular/common/http/src/module';
 
+import {
+    MatButtonModule, MatMenuModule, MatCardModule,
+    MatInputModule, MatSidenavModule, MatIconModule, MatToolbarModule,
+
+} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -47,6 +51,8 @@ import { HttpClientModule } from '@angular/common/http/src/module';
         BrowserModule,
         HttpClientModule,
         PipeModule,
+        MatCardModule,
+        MatSidenavModule,
         ComponentsModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(routes, { useHash: true }),

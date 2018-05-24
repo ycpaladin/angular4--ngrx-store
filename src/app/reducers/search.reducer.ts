@@ -5,7 +5,7 @@ export interface State {
     ids: string[];
     loading: boolean;
     query: string;
-};
+}
 
 const initialState: State = {
     ids: [],
@@ -36,7 +36,7 @@ export function reducer(state = initialState, action: book.Actions): State {
             const books = action.payload;
 
             return {
-                ids: books.map(book => book.id),
+                ids: books.map(b => b.id),
                 loading: false,
                 query: state.query
             };

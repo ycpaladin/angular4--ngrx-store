@@ -3,9 +3,6 @@ import * as fromBook from './book.reducer';
 import * as fromCollection from './collection.reducer';
 import * as fromLayout from './layout.reducer';
 import * as fromSearch from './search.reducer';
-// import { createSelector } from 'reselect';
-
-import { environment } from '../../environments/environment';
 
 export interface State {
     search: fromSearch.State;

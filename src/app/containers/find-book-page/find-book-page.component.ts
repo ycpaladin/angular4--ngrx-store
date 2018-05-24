@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import 'rxjs/add/operator/let';
-import 'rxjs/add/operator/take';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as book from '../../actions/book.action';
 import { Book } from '../../models/book';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -19,9 +18,9 @@ export class FindBookPageComponent implements OnInit {
     books$: Observable<Book[]>;
     loading$: Observable<boolean>;
     constructor(private store: Store<fromRoot.State>) {
-        this.searchQuery$ = store.select(fromRoot.getSearchQuery).take(1);
-        this.books$ = store.select(fromRoot.getSearchResults);
-        this.loading$ = store.select(fromRoot.getSearchLoading);
+        this.searchQuery$ = store.pipe(select(fromRoot.getSearchQuery), take(1));
+        this.books$ = store.pipe(select(fromRoot.getSearchResults));
+        this.loading$ = store.pipe(select(fromRoot.getSearchLoading));
     }
 
     ngOnInit() {

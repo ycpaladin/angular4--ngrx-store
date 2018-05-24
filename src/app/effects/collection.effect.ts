@@ -1,79 +1,68 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/toArray';
-// import 'rxjs/add/operatpr/select';
-// import 'rxjs/add/operator/expand';
-import { defer } from 'rxjs/observable/defer';
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Observable';
-
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Database } from '@ngrx/db';
 
 import * as collection from '../actions/collection.action';
 import { Book } from '../models/book';
+import { startWith, switchMap, map, catchError, toArray, mergeMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 
 @Injectable()
 export class CollectionEffects {
 
 
-    // @Effect({ dispatch: false })
-    // openDB111$: Observable<any> = defer(() => {
-    //     return this.db.open('books_app');
-    // });
-
     @Effect()
-    loadCollection$: Observable<Action> = this.actions$
-        .ofType(collection.LOAD)
-        .startWith(new collection.LoadAction())
-        .switchMap(() =>
-            this.db.query('books')
-                .toArray()
-                .map((books: Book[]) => new collection.LoadSuccessAction(books))
-                .catch(error => of(new collection.LoadFailAction(error)))
-        );
+    loadCollection$: Observable<Action> = this.actions$.pipe(
+        ofType<collection.LoadAction>(collection.LOAD),
+        startWith(new collection.LoadAction()),
+        switchMap(() => this.db.query('books').pipe(
+            toArray(),
+            map((books: Book[]) => new collection.LoadSuccessAction(books)),
+            catchError(e => of(new collection.LoadFailAction(e)))
+        ))
+    );
+
 
 
     @Effect()
     addBookToCollection$: Observable<Action> = this.actions$
-        .ofType(collection.ADD_BOOK)
-        .map((action: collection.AddBookAction) => action.payload)
-        .mergeMap(book =>
-            this.db.insert('books', [book])
-                .map(() => new collection.AddBookSuccessAction(book))
-                .catch(() => of(new collection.AddBookFailAction(book)))
-        );
+        .pipe(
+            ofType<collection.AddBookAction>(collection.ADD_BOOK),
+            map(action => action.payload),
+            mergeMap(book =>
+                this.db.insert('books', [book]).pipe(
+                    map(() => new collection.AddBookSuccessAction(book)),
+                    catchError(e => of(new collection.AddBookFailAction(book)))
+                )
+            ));
+
 
     @Effect()
     removeBookFromCollection$: Observable<Action> = this.actions$
-        .ofType(collection.REMOVE_BOOK)
-        .map((action: collection.RemoveBookAction) => action.payload)
-        .mergeMap(book =>
-            this.db.executeWrite('books', 'delete', [book.id])
-                .map(() => new collection.RemoveBookSuccessAction(book))
-                .catch(() => of(new collection.RemoveBookFailAction(book)))
+        .pipe(
+            ofType<collection.RemoveBookAction>(collection.REMOVE_BOOK),
+            map(action => action.payload),
+            mergeMap(book => this.db.executeWrite('books', 'delete', [book.id]).pipe(
+                map(() => new collection.RemoveBookSuccessAction(book)),
+                catchError(e => of(new collection.RemoveBookFailAction(book)))
+            ))
         );
 
+
     @Effect()
-    removeAllBookFromCollection$: Observable<Action> = this.actions$
-        .ofType(collection.REMOVE_ALL_BOOKS)
-        .mergeMap(() =>
-            this.db.query('books').map((book: Book) => book.id).toArray<string>()
-                .mergeMap((bookIds: string[]) =>
-                    this.db.executeWrite('books', 'delete', bookIds)
-                        .map(() => new collection.RemoveAllBooksSucessAction())
-                        .catch(error => of(new collection.RemoveAllBooksFailAction()))
-                ).catch((error) => {
-                    console.log(error);
-                    return of(new collection.RemoveAllBooksFailAction());
-                })
-        );
+    removeAllBookFromCollection$: Observable<Action> = this.actions$.pipe(
+        ofType<collection.RemoveAllBooksAction>(collection.REMOVE_ALL_BOOKS),
+        mergeMap(() => this.db.query('books').pipe(
+            map((book: Book) => book.id),
+            toArray(),
+            mergeMap((bookIds: string[]) => this.db.executeWrite('books', 'delete', bookIds).pipe(
+                map(() => new collection.RemoveAllBooksSucessAction()),
+                catchError(error => of(new collection.RemoveAllBooksFailAction())
+                ))
+            ))
+        ));
 
 
     constructor(private actions$: Actions, private db: Database) {

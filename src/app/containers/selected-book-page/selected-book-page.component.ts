@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Book } from '../../models/book';
 import * as fromRoot from '../../reducers';
 import * as collection from '../../actions/collection.action';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-selected-book-page',
@@ -15,8 +15,8 @@ export class SelectedBookPageComponent implements OnInit {
     book$: Observable<Book>;
     isSelectedBookInCollection$: Observable<boolean>;
     constructor(private store: Store<fromRoot.State>) {
-        this.book$ = store.select(fromRoot.getSelectedBook);
-        this.isSelectedBookInCollection$ = store.select(fromRoot.isSelectedBookInCollection);
+        this.book$ = store.pipe(select(fromRoot.getSelectedBook));
+        this.isSelectedBookInCollection$ = store.pipe(select(fromRoot.isSelectedBookInCollection));
     }
 
 

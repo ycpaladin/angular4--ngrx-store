@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/observable';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { Book } from '../../models/book';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-collection-page',
@@ -13,7 +13,7 @@ export class CollectionPageComponent implements OnInit {
 
     books$: Observable<Book[]>;
     constructor(private store: Store<fromRoot.State>) {
-        this.books$ = store.select(fromRoot.getBookCollection);
+        this.books$ = store.pipe(select(fromRoot.getBookCollection));
     }
 
     ngOnInit() {

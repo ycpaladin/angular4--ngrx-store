@@ -1,10 +1,8 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from './reducers';
-import { Observable } from 'rxjs/Observable';
-
-
 import * as layout from './actions/layout.action';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +15,7 @@ export class AppComponent {
 
     showSidenav$: Observable<boolean>;
     constructor(private store: Store<fromRoot.State>) {
-        this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
+        this.showSidenav$ = this.store.pipe(select(fromRoot.getShowSidenav));
     }
 
     title = 'app';

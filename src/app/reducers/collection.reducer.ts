@@ -12,10 +12,6 @@ const initialState: State = {
     ids: []
 };
 
-
-
-
-
 export function reducer(state = initialState, action: collection.Actions): State {
     switch (action.type) {
         case collection.LOAD: {

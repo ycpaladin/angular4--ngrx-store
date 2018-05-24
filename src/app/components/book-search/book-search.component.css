@@ -1,5 +1,5 @@
-md-card-title,
-md-card-content {
+mat-card-title,
+mat-card-content {
   display: flex;
   justify-content: center;
 }
@@ -8,11 +8,11 @@ input {
   width: 300px;
 }
 
-md-card-spinner {
+mat-card-spinner {
   padding-left: 60px; 
 }
 
-md-spinner {
+mat-spinner {
   width: 30px;
   height: 30px;
   position: relative;
@@ -21,6 +21,6 @@ md-spinner {
   opacity: 0.0;
 }
 
-md-spinner.show {
+mat-spinner.show {
   opacity: 1.0;
 }

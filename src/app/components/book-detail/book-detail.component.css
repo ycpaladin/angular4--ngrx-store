@@ -4,11 +4,11 @@
   margin: 75px 0;
 }
 
-md-card {
+mat-card {
   max-width: 600px;
 }
 
-md-card-title-group {
+mat-card-title-group {
   margin-left: 0;
 }
 
@@ -18,15 +18,15 @@ img {
   margin-left: 5px;
 }
 
-md-card-content {
+mat-card-content {
   margin: 15px 0 50px;
 }
 
-md-card-actions {
+mat-card-actions {
   margin: 25px 0 0 !important;
 }
 
-md-card-footer {
+mat-card-footer {
   padding: 0 25px 25px;
   position: relative;
 }

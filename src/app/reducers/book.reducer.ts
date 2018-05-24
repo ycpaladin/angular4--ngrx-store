@@ -25,11 +25,11 @@ export function reducer(state: State = initialState, action: book.Actions | coll
         case book.SEARCH_COMPLETE:
         case collection.LOAD_SUCCESS: {
             const books = action.payload;
-            const newBooks = books.filter(book => !state.entities[book.id]);
+            const newBooks = books.filter(b => !state.entities[b.id]);
 
-            const newBookIds = newBooks.map(book => book.id);
-            const newBookEntities = newBooks.reduce((entities: { [id: string]: Book }, book: Book) => {
-                return Object.assign(entities, { [book.id]: book });
+            const newBookIds = newBooks.map(b => b.id);
+            const newBookEntities = newBooks.reduce((entities: { [id: string]: Book }, b: Book) => {
+                return Object.assign(entities, { [b.id]: book });
             }, {});
 
             return {
@@ -39,16 +39,16 @@ export function reducer(state: State = initialState, action: book.Actions | coll
             };
         }
         case book.LOAD: {
-            const book = action.payload;
+            const b = action.payload;
 
-            if (state.ids.indexOf(book.id) > -1) {
+            if (state.ids.indexOf(b.id) > -1) {
                 return state;
             }
 
             return {
-                ids: [...state.ids, book.id],
+                ids: [...state.ids, b.id],
                 entities: Object.assign({}, state.entities, {
-                    [book.id]: book
+                    [b.id]: book
                 }),
                 selectedBookId: state.selectedBookId
             };

@@ -1,15 +1,15 @@
 <a [routerLink]="['/book', id]">
-  <md-card>
-    <md-card-title-group>
-      <img md-card-sm-image *ngIf="thumbnail" [src]="thumbnail" />
-      <md-card-title>{{ title | bcEllipsis:35 }}</md-card-title>
-      <md-card-subtitle *ngIf="subtitle">{{ subtitle | bcEllipsis:40 }}</md-card-subtitle>
-    </md-card-title-group>
-    <md-card-content>
+  <mat-card>
+    <mat-card-title-group>
+      <img mat-card-sm-image *ngIf="thumbnail" [src]="thumbnail" />
+      <mat-card-title>{{ title | bcEllipsis:35 }}</mat-card-title>
+      <mat-card-subtitle *ngIf="subtitle">{{ subtitle | bcEllipsis:40 }}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
       <p *ngIf="description">{{ description | bcEllipsis }}</p>
-    </md-card-content>
-    <md-card-footer>
+    </mat-card-content>
+    <mat-card-footer>
       <app-book-authors [book]="book"></app-book-authors>
-    </md-card-footer>
-  </md-card>
+    </mat-card-footer>
+  </mat-card>
 </a>

@@ -15,8 +15,9 @@ import { BookSearchComponent } from './book-search/book-search.component';
 import { RemoveAllBookComponent } from './remove-all-book/remove-all-book.component';
 
 import {
-    MatButtonModule, MatMenuModule, MatCardModule,
-    MatInputModule, MatSidenavModule, MatIconModule, MatToolbarModule
+    MatButtonModule, MatMenuModule, MatCardModule, MatListModule, MatFormFieldModule,
+    MatInputModule, MatSidenavModule, MatIconModule, MatToolbarModule, MatProgressSpinnerModule
+
 } from '@angular/material';
 
 export const COMPONENTS = [
@@ -29,19 +30,22 @@ export const COMPONENTS = [
     BookPreviewSearchComponent,
     ToolbarComponent,
     BookSearchComponent,
-    RemoveAllBookComponent
+    RemoveAllBookComponent,
 ];
 
 @NgModule({
     imports: [
         CommonModule,
+        MatListModule,
         MatButtonModule,
         MatMenuModule,
         MatCardModule,
+        MatFormFieldModule,
         MatInputModule,
         MatSidenavModule,
         MatIconModule,
         MatToolbarModule,
+        MatProgressSpinnerModule,
         RouterModule,
         PipeModule,
     ],
