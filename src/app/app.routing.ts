@@ -21,18 +21,18 @@ export const routes: Routes = [
         canActivate: [BookExistsGuard],
         component: ViewBookPageComponent
     },
-    {
-        path: 'training',
-        loadChildren: './containers/rxjs-training-page/rxjs-training-page.module#RxjsTrainingPageModule'
-    },
-    {
-        path: 'three',
-        loadChildren: './containers/three-training-page/three-training-page.module#ThreeTrainingPageModule'
-    },
-    {
-        path: 'detection',
-        loadChildren: './containers/detection-change-page/detection-change-page.module#DetectionChangePageModule'
-    },
+    // {
+    //     path: 'training',
+    //     loadChildren: './containers/rxjs-training-page/rxjs-training-page.module#RxjsTrainingPageModule'
+    // },
+    // {
+    //     path: 'three',
+    //     loadChildren: './containers/three-training-page/three-training-page.module#ThreeTrainingPageModule'
+    // },
+    // {
+    //     path: 'detection',
+    //     loadChildren: './containers/detection-change-page/detection-change-page.module#DetectionChangePageModule'
+    // },
     {
         path: '**',
         component: NotFoundPageComponent

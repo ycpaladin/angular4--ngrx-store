@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '@angular/material';
+// import { MaterialModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -30,6 +30,8 @@ import { CollectionEffects } from './effects/collection.effect';
 import { reducer } from './reducers';
 import { schema } from './db.schema';
 
+import { HttpClientModule } from '@angular/common/http/src/module';
+
 
 @NgModule({
     declarations: [
@@ -43,8 +45,7 @@ import { schema } from './db.schema';
     ],
     imports: [
         BrowserModule,
-        MaterialModule,
-        HttpModule,
+        HttpClientModule,
         PipeModule,
         ComponentsModule,
         BrowserAnimationsModule,

@@ -1,9 +1,9 @@
-import { compose, combineReducers, ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap, createSelector } from '@ngrx/store';
 import * as fromBook from './book.reducer';
 import * as fromCollection from './collection.reducer';
 import * as fromLayout from './layout.reducer';
 import * as fromSearch from './search.reducer';
-import { createSelector } from 'reselect';
+// import { createSelector } from 'reselect';
 
 import { environment } from '../../environments/environment';
 
@@ -54,7 +54,7 @@ export const getBookCollection = createSelector(getBookEntities, getCollectionBo
 });
 
 export const isSelectedBookInCollection = createSelector(getCollectionBookIds, getSelectedBookId, (ids, selected) => {
-  return ids.indexOf(selected) > -1;
+    return ids.indexOf(selected) > -1;
 });
 
 

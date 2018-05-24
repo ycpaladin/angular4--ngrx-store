@@ -1,7 +1,8 @@
-import { createSelector } from 'reselect';
+// import { createSelector } from 'reselect';
 import { Book } from '../models/book';
 import * as book from '../actions/book.action';
 import * as collection from '../actions/collection.action';
+import { createSelector } from '@ngrx/store';
 
 export interface State {
     ids: string[];
@@ -73,9 +74,9 @@ export const getIds = (state: State) => state.ids;
 export const getSelectedId = (state: State) => state.selectedBookId;
 
 export const getSelected = createSelector(getEntities, getSelectedId, (entities, selectedId) => {
-  return entities[selectedId];
+    return entities[selectedId];
 });
 
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
-  return ids.map(id => entities[id]);
+    return ids.map(id => entities[id]);
 });

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-import { EffectsModule } from '@ngrx/effects';
 import { PipeModule } from '../pipes/pipe.module';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -16,7 +14,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BookSearchComponent } from './book-search/book-search.component';
 import { RemoveAllBookComponent } from './remove-all-book/remove-all-book.component';
 
-import { BookEffects } from '../effects/book.effect';
+import {
+    MatButtonModule, MatMenuModule, MatCardModule,
+    MatInputModule, MatSidenavModule, MatIconModule, MatToolbarModule
+} from '@angular/material';
 
 export const COMPONENTS = [
     SidenavComponent,
@@ -34,10 +35,15 @@ export const COMPONENTS = [
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatCardModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatToolbarModule,
         RouterModule,
         PipeModule,
-        // EffectsModule.forFeature([BookEffects])
     ],
     declarations: COMPONENTS,
     exports: COMPONENTS
