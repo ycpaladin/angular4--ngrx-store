@@ -6,7 +6,9 @@
 
 2.0升级4.0会有一部分API发生变动，[参照](https://github.com/ngrx/platform/blob/master/MIGRATION.md)。
 
+# Update
 
+[2018-05-24] 项目已经升级到Angular6, @ngrx/store 升级到6.0
 
 ## 运行
 ```bash
